@@ -178,7 +178,8 @@ class IndustryData:
 
 
     def save_data(self):
-        file_path = f'{self.included}/基本資料.xlsx'
+        #file_path = f'{self.included}/基本資料.xlsx'
+        file_path = f'{self.included}/{self.included}資料.xlsx'
         mode = 'a' if os.path.exists(file_path) else 'w'
 
         with pd.ExcelWriter(file_path, mode=mode, engine='openpyxl') as writer:

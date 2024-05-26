@@ -220,7 +220,8 @@ class EfficiencyFrontier:
 
 
     def save_data(self):
-        file_path = f'{self.included}/效率前緣.xlsx'
+        #file_path = f'{self.included}/效率前緣.xlsx'
+        file_path = f'{self.included}/{self.included}資料.xlsx'
         mode = 'a' if os.path.exists(file_path) else 'w'
         with pd.ExcelWriter(file_path, mode=mode, engine='openpyxl') as writer:
             if self.data_describe is not None:
@@ -228,9 +229,9 @@ class EfficiencyFrontier:
                     writer.book.remove(writer.book['年化基礎統計'])
                 self.data_describe.to_excel(writer, sheet_name='年化基礎統計')
             if self.cov_df is not None:
-                if '變異數-共變異數矩陣' in writer.book.sheetnames:
-                    writer.book.remove(writer.book['變異數-共變異數矩陣'])
-                self.cov_df.to_excel(writer, sheet_name='變異數-共變異數矩陣')
+                if '年化變異數-共變異數矩陣' in writer.book.sheetnames:
+                    writer.book.remove(writer.book['年化變異數-共變異數矩陣'])
+                self.cov_df.to_excel(writer, sheet_name='年化變異數-共變異數矩陣')
             if self.limiteEF_df is not None:
                 if '限制式效率前緣' in writer.book.sheetnames:
                     writer.book.remove(writer.book['限制式效率前緣'])
